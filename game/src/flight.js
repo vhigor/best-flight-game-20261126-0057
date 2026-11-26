@@ -82,6 +82,7 @@ export function stepFlight(p, input, dt) {
       p.roll *= 0.6;
       p.vspeed = 0;
       if (p.throttle < 0.25) p.speed = Math.max(0, p.speed - dt * 9);
+      if (p.throttle < 0.05) p.speed = Math.max(0, p.speed - dt * 15); // wheel brakes
       if (p.speed > 30 && p.pitch > 0.05) { p.onGround = false; p.y = ground + 0.6; }
       if (onRunway(p.x, p.z) && p.speed < 3) {
         p.fuel = 100;                       // the ground crew tops her up
